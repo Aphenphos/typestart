@@ -61,7 +61,7 @@ const unsanitizedNumber = (input: string): UnsanitizedNumber | null => {
  */
 const sanitizedNumber = (
   input: UnsanitizedNumber | null
-): SanitizedNumber | null => {
+): SanitizedNumber | null | InvalidNumber => {
   if (input == null) {
     return null;
   } else {
@@ -71,7 +71,9 @@ const sanitizedNumber = (
         value: input.value,
       };
     } else {
-      return null;
+      return {
+        kind: "invalid-number",
+      };
     }
   }
 };
